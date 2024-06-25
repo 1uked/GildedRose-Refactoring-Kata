@@ -50,6 +50,24 @@ internal class GildedRoseTest {
         assertEquals(50, app.items[0].quality)
         assertEquals(9, app.items[0].sellIn)
     }
+
+    @Test
+    fun updateQuality_qualityIs_notNegative() {
+        val items = listOf(Item("Turnip", 20, 10))
+        val app = GildedRose(items)
+        repeat(15) { app.updateQuality() }
+        assertEquals(0, app.items[0].quality)
+        assertEquals(5, app.items[0].sellIn)
+    }
+
+    @Test
+    fun updateQuality_sellIn_lessZero_degradesTwiceAsFast() {
+        val items = listOf(Item("Orange", 5, 50))
+        val app = GildedRose(items)
+        repeat(15) { app.updateQuality() }
+        assertEquals(25, app.items[0].quality)
+        assertEquals(-10, app.items[0].sellIn)
+    }
 }
 
 
