@@ -69,7 +69,7 @@ internal class GildedRoseTest {
         assertEquals(-10, app.items[0].sellIn)
     }
 
-
+    @Test
     fun updateQuality_whenSellIn_equalsZero_backStagePass_equalsZero() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 50))
         val app = GildedRose(items)
@@ -78,6 +78,7 @@ internal class GildedRoseTest {
         assertEquals(0, app.items[0].sellIn)
     }
 
+    @Test
     fun updateQuality_backStagePass_10DaysOrLess() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 20))
         val app = GildedRose(items)
@@ -86,6 +87,7 @@ internal class GildedRoseTest {
         assertEquals(9, app.items[0].sellIn)
     }
 
+    @Test
     fun updateQuality_backStagePass_5DaysOrLess() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 3, 20))
         val app = GildedRose(items)
@@ -94,6 +96,7 @@ internal class GildedRoseTest {
         assertEquals(2, app.items[0].sellIn)
     }
 
+    @Test
     fun updateQuality_backStagePass_greaterThan10() {
         val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 15, 20))
         val app = GildedRose(items)
@@ -102,6 +105,7 @@ internal class GildedRoseTest {
         assertEquals(14, app.items[0].sellIn)
     }
 
+//    @Test
 //    fun updateQuality_conjuredItems_degradeTwice() {
 //        val items = listOf(Item("Conjured Torch", 15, 20))
 //        val app = GildedRose(items)
