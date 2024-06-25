@@ -105,14 +105,14 @@ internal class GildedRoseTest {
         assertEquals(14, app.items[0].sellIn)
     }
 
-//    @Test
-//    fun updateQuality_conjuredItems_degradeTwice() {
-//        val items = listOf(Item("Conjured Torch", 15, 20))
-//        val app = GildedRose(items)
-//        repeat(5) {app.updateQuality()}
-//        assertEquals(10, app.items[0].quality)
-//        assertEquals(10, app.items[0].sellIn)
-//    }
+    @Test
+    fun updateQuality_conjuredItems_degradeTwice() {
+        val items = listOf(Item("Conjured Torch", 15, 20))
+        val app = GildedRose(items)
+        repeat(5) {app.updateQuality()}
+        assertEquals(10, app.items[0].quality)
+        assertEquals(10, app.items[0].sellIn)
+    }
 
 
 }

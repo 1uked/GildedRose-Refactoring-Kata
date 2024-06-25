@@ -1,7 +1,5 @@
 package com.gildedrose
 
-import java.security.KeyStore.TrustedCertificateEntry
-
 class GildedRose(var items: List<Item>) {
 
     fun updateQuality() {
@@ -24,6 +22,9 @@ class GildedRose(var items: List<Item>) {
     //TODO Swap Coerce to Max/Min
     fun updateQualityValue(i: Item) : Int {
 
+        var conjured = 1
+        if (i.name.contains("Conjured")){ conjured = 2 }
+
         return when(i.name) {
             "Sulfuras, Hand of Ragnaros" -> i.quality
 
@@ -38,9 +39,9 @@ class GildedRose(var items: List<Item>) {
 
             else -> {
                 if (i.sellIn < 0) {
-                    (i.quality - 2).coerceAtLeast(0)
+                    (i.quality - 2 * conjured).coerceAtLeast(0)
                 } else {
-                    (i.quality - 1).coerceAtLeast(0)
+                    (i.quality - 1 * conjured).coerceAtLeast(0)
                 }
             }
         }
