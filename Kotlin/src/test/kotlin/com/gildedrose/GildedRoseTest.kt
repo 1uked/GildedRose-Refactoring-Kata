@@ -68,6 +68,24 @@ internal class GildedRoseTest {
         assertEquals(25, app.items[0].quality)
         assertEquals(-10, app.items[0].sellIn)
     }
+
+
+    fun updateQuality_whenSellIn_equalsZero_backStagePass_equalsZero() {
+        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 50))
+        val app = GildedRose(items)
+        repeat(10) { app.updateQuality() }
+        assertEquals(0, app.items[0].quality)
+        assertEquals(0, app.items[0].sellIn)
+    }
+
+    fun updateQuality_whenSellIn_equalsZero_backStagePass_equalsZero() {
+        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 50))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals(25, app.items[0].quality)
+        assertEquals(53, app.items[0].sellIn)
+    }
+
 }
 
 
