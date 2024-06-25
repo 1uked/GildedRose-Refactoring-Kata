@@ -18,12 +18,10 @@ class GildedRose(var items: List<Item>) {
         }
     }
 
-    //TODO Fix to set to Starts With -> Works with any ticket
-    fun updateQualityValue(i: Item) : Int {
-
+    private fun updateQualityValue(i: Item) : Int {
+        //TODO Cleaner Solution -> Decide how to handle case -> 'Conjured Backstage Pass'
         var conjured = 1
         if (i.name.contains("Conjured")){ conjured = 2 }
-
         if (i.name.contains("Backstage pass")) {i.name = "Backstage pass"}
 
         return when(i.name) {

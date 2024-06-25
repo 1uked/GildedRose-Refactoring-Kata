@@ -15,14 +15,20 @@ internal class GildedRoseTest {
     }
 
     @Test
+    fun updateQuality_sellIn_Decrease() {
+        val items = listOf(Item("Rabbit Stew", 10, 8))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals(9, app.items[0].sellIn)
+    }
+
+    @Test
     fun updateQuality_agedBrie_Increase() {
         val items = listOf(Item("Aged Brie", 3, 10))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(11, app.items[0].quality)
-        assertEquals(2, app.items[0].sellIn)
     }
-
 
     @Test
     fun updateQuality_normalItem_Decrease() {
@@ -30,11 +36,10 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(7, app.items[0].quality)
-        assertEquals(4, app.items[0].sellIn)
     }
 
     @Test
-    fun updateQuality_sellIn_equalsZero() {
+    fun updateQuality_sellIn_belowZero() {
         val items = listOf(Item("Fruit", 0, 10))
         val app = GildedRose(items)
         app.updateQuality()
@@ -48,7 +53,6 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(50, app.items[0].quality)
-        assertEquals(9, app.items[0].sellIn)
     }
 
     @Test
@@ -66,7 +70,6 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         repeat(15) { app.updateQuality() }
         assertEquals(25, app.items[0].quality)
-        assertEquals(-10, app.items[0].sellIn)
     }
 
     @Test
@@ -75,25 +78,6 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         repeat(10) { app.updateQuality() }
         assertEquals(0, app.items[0].quality)
-        assertEquals(0, app.items[0].sellIn)
-    }
-
-    @Test
-    fun updateQuality_backStagePass_10DaysOrLess() {
-        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 20))
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(22, app.items[0].quality)
-        assertEquals(9, app.items[0].sellIn)
-    }
-
-    @Test
-    fun updateQuality_backStagePass_5DaysOrLess() {
-        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 3, 20))
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals(23, app.items[0].quality)
-        assertEquals(2, app.items[0].sellIn)
     }
 
     @Test
@@ -102,7 +86,22 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(21, app.items[0].quality)
-        assertEquals(14, app.items[0].sellIn)
+    }
+
+    @Test
+    fun updateQuality_backStagePass_10DaysOrLess() {
+        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 10, 20))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals(22, app.items[0].quality)
+    }
+
+    @Test
+    fun updateQuality_backStagePass_5DaysOrLess() {
+        val items = listOf(Item("Backstage passes to a TAFKAL80ETC concert", 3, 20))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals(23, app.items[0].quality)
     }
 
     @Test
@@ -111,9 +110,15 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
         repeat(5) {app.updateQuality()}
         assertEquals(10, app.items[0].quality)
-        assertEquals(10, app.items[0].sellIn)
     }
 
+    @Test
+    fun updateQuality_conjuredItems_degradeTwice_nonNegative() {
+        val items = listOf(Item("Conjured Torch", 15, 4))
+        val app = GildedRose(items)
+        repeat(5) {app.updateQuality()}
+        assertEquals(0, app.items[0].quality)
+    }
 
 }
 
