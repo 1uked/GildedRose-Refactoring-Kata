@@ -122,10 +122,10 @@ internal class GildedRoseTest {
 
     @Test
     fun updateQuality_conjuredItems_belowZero() {
-        val items = listOf(ConjuredItem("Conjured House", 0, 24))
+        val items = listOf(ConjuredItem("Conjured House", 1, 24))
         val app = GildedRose(items)
         repeat(5) {app.updateQuality()}
-        assertEquals(4, app.items[0].quality)
+        assertEquals(6, app.items[0].quality)
     }
 }
 
